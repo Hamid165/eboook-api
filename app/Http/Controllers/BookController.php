@@ -22,6 +22,7 @@ class BookController extends Controller
             "data"=> $book
         ],200);
     }
+    
 
     /**
      * Show the form for creating a new resource.
