@@ -45,10 +45,10 @@ class BookController extends Controller
     {
         $message = [
             "title" => "Masukan Judul",
-            "description" => "Masukan Judul",
-            "author" => "Masukan Judul",
-            "publisher" => "Masukan Judul",
-            "date_of_issue" => "Masukan Judul"
+            "description" => "Masukan deskripsi",
+            "author" => "Masukan author",
+            "publisher" => "Masukan publisher",
+            "date_of_issue" => "Masukan tanggal"
         ];
         $validasi = Validator::make($request->all(),[
             "title" => "required",
