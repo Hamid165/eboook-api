@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -35,19 +36,18 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-
         $fields = $request->validate([
-            'email' => 'require|string',
-            'password' => 'require|string'
+            'email' => 'required|string',
+            'password' => 'required|string'
         ]);
         //cek email
         $user = User::where('email', $fields['email'])->first();
         //cek pass
-        if (!$user || Hash::chech($fields['password'], $user->password))
+        if (!$user || !Hash::check($fields['password'], $user->password)){
             return response([
                 'message' => 'unauthorized'
             ], 401);
-
+        }
         $token = $user->createToken('tokenku')->plainTextToken;
 
         $response = [
